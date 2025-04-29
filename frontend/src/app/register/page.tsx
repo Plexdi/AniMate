@@ -93,7 +93,6 @@ export default function Register() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f9c87c] p-6">
       <div className="bg-[#1a1a1a] rounded-3xl p-8 flex gap-6 w-full max-w-6xl shadow-xl">
-        {/* Left side - Form add more later */}
         <div className="flex-1 flex flex-col justify-center">
           <h1 className="text-3xl font-bold mb-2 text-white">Create Account</h1>
           <p className="text-white mb-8">
