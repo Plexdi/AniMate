@@ -3,6 +3,15 @@
 import useCurrentUser from "@/Hooks/useCurrentUser";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 export default function NavBar() {
   const router = useRouter();
@@ -27,6 +36,17 @@ export default function NavBar() {
 
       {user ? (
         <div className="flex gap-4 items-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Anime List</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Favourites</DropdownMenuItem>
+                <DropdownMenuItem>Friends</DropdownMenuItem>
+                <DropdownMenuItem>Settings</DropdownMenuItem>
+                <DropdownMenuItem>Logout</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           <span>Welcome, {user.displayName || user.email}</span>
           <img
             src={user.photoURL || '/default-avatar.png'}
