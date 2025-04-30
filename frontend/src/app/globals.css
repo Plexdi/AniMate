@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -44,7 +43,7 @@
 }
 
 body {
-  background: #0f172a;
+  background: #000000;
 
 }
 
