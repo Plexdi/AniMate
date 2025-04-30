@@ -21,7 +21,7 @@ export default function NewEpisodesToday() {
 
   return (
     <section className="px-6 mt-10 text-white">
-      <div className="flex justify-between items-center border-b border-red-600 pb-2 mb-4">
+      <div className="flex justify-between items-center border-b border-[#f9c87c] pb-2 mb-4">
         <div>
           <h2 className="text-2xl font-bold">New Episodes</h2>
           <p className="text-gray-400">Today</p>
@@ -59,7 +59,7 @@ export default function NewEpisodesToday() {
       {visibleCount < episodes.length && (
         <div className="mt-6">
           <button
-            className="bg-red-600 w-full py-3 text-white font-semibold hover:bg-red-700 transition rounded"
+            className="bg-[#f9c87c] w-full py-3 text-white font-semibold hover:bg-red-700 transition rounded"
             onClick={showMore}
           >
             SHOW MORE

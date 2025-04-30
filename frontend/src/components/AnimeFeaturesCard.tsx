@@ -44,13 +44,13 @@ export default function AnimeFeatureCard({ anime, onAddToList }: AnimeFeatureCar
         <div className="flex gap-4 mt-4">
           <button
             onClick={handleDetails}
-            className="bg-transparent text-red-500 border border-red-500 px-4 py-2 rounded hover:bg-red-600 hover:text-white transition"
+            className="bg-transparent text-[#f9c87c] border border-[#f9c87c] px-4 py-2 rounded hover:bg-[#f9c87c] hover:text-white transition"
           >
             VIEW DETAILS
           </button>
           <button
             onClick={handleAddToList}
-            className="bg-transparent text-red-500 border border-red-500 px-4 py-2 rounded hover:bg-red-600 hover:text-white transition"
+            className="bg-transparent text-[#f9c87c] border border-[#f9c87c] px-4 py-2 rounded hover:bg-[#f9c87c] hover:text-white transition"
           >
             ADD TO LIST
           </button>

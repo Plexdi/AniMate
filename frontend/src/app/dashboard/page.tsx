@@ -8,6 +8,8 @@ import RecommendationHero from "@/components/RecommendationHero";
 import AnimeFeatureCard from "@/components/AnimeFeaturesCard";
 import { useState, useEffect } from "react";
 import NewEpisodesToday from "@/components/NewEpisode";
+import RomanceAnimeSection from "@/components/RomanceAnime";
+import Footer from "@/components/Footer";
 
 type AnimeData = {
     mal_id: number;
@@ -54,6 +56,8 @@ export default function Dashboard(){
                 ))}
                 </section>
             <NewEpisodesToday />
+            <RomanceAnimeSection />
+            <Footer />
         </div>
     )
 }
