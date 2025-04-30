@@ -1,4 +1,4 @@
-// components/Footer.tsx
+'use client'
 export default function Footer() {
     return (
     <footer className="bg-gradient-to-t from-[#f9c87c] via-[#1a1a1a] to-black text-white px-10 pt-14 pb-8">

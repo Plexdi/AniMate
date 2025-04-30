@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { fetchAnimeRecommendations } from '@/utils/AnimeRecommendation';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function GlobalRecommendations() {
   const [entries, setEntries] = useState<any[]>([]);
@@ -32,20 +33,16 @@ export default function GlobalRecommendations() {
           const img = anime?.images?.jpg?.image_url;
 
           return (
-            <div
+            <Link
+              href={`/anime/${anime.mal_id}`}
               key={anime.mal_id}
-              onClick={() => handleClick(anime.mal_id)}
-              className="min-w-[160px] cursor-pointer transition-transform hover:scale-105"
+              className="min-w-[160px] block hover:opacity-80 transition-opacity"
             >
-              {img ? (
+              <div>
                 <img src={img} alt={anime.title} className="w-full rounded-md" />
-              ) : (
-                <div className="w-full h-[230px] bg-gray-700 rounded flex items-center justify-center text-white text-sm">
-                  No Image
-                </div>
-              )}
-              <p className="text-sm mt-1 text-white">{anime.title}</p>
-            </div>
+                <p className="text-sm mt-1 text-white">{anime.title}</p>
+              </div>
+            </Link>
           );
         })}
       </div>

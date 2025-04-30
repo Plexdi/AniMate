@@ -2,6 +2,7 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function SearchResultsPage() {
   const searchParams = useSearchParams();
@@ -35,10 +36,16 @@ export default function SearchResultsPage() {
       ) : results.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {results.map((anime) => (
-            <div key={anime.mal_id} className="bg-gray-800 p-3 rounded shadow">
-              <img src={anime.images.jpg.image_url} alt={anime.title} className="w-full rounded" />
-              <h2 className="mt-2 text-sm font-semibold">{anime.title}</h2>
-            </div>
+            <Link
+              href={`/anime/${anime.mal_id}`}
+              key={anime.mal_id}
+              className="block hover:opacity-80 transition-opacity"
+            >
+              <div className="bg-gray-800 p-3 rounded shadow">
+                <img src={anime.images.jpg.image_url} alt={anime.title} className="w-full rounded" />
+                <h2 className="mt-2 text-sm font-semibold">{anime.title}</h2>
+              </div>
+            </Link>
           ))}
         </div>
       ) : (

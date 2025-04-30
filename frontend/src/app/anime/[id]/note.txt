@@ -1,0 +1,91 @@
+'use client';
+
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { getAnimeFullById } from '@/utils/getAnimeFullById';
+
+type AnimeData = {
+  title: string;
+  synopsis: string;
+  images: {
+    jpg: {
+      large_image_url: string;
+    };
+  };
+  trailer: {
+    embed_url: string;
+  };
+  episodes: number;
+  status: string;
+  duration: string;
+  rating: string;
+  score: number;
+};
+
+export default function AnimeInfoPage() {
+  const { id } = useParams();
+  const animeId = id as string;
+
+  const [anime, setAnime] = useState<AnimeData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadAnime() {
+      try {
+        const res = await getAnimeFullById(animeId);
+        console.log('Fetched anime data:', res);
+        setAnime(res.data);
+      } catch (error) {
+        console.error('Failed to fetch anime:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+  
+    if (animeId) loadAnime();
+  }, [animeId]);
+  
+
+  if (loading) return <div className="p-6 text-white">Loading...</div>;
+  if (!anime || !anime.title || !anime.images?.jpg?.large_image_url) {
+    return <div className="p-6 text-red-500">Anime not found or incomplete.</div>;
+  }
+  
+
+  return (
+    <div className="p-6 text-white">
+      <div className="flex flex-col md:flex-row gap-8">
+        <img
+          src={anime.images.jpg.large_image_url}
+          alt={anime.title}
+          className="w-64 rounded"
+        />
+        <div>
+          <h1 className="text-3xl font-bold mb-2">{anime.title}</h1>
+          <p className="text-gray-300 mb-4">{anime.synopsis}</p>
+          <ul className="text-sm text-gray-400 space-y-1">
+            <li><strong>Status:</strong> {anime.status}</li>
+            <li><strong>Episodes:</strong> {anime.episodes}</li>
+            <li><strong>Duration:</strong> {anime.duration}</li>
+            <li><strong>Rating:</strong> {anime.rating}</li>
+            <li><strong>Score:</strong> {anime.score}</li>
+          </ul>
+        </div>
+      </div>
+
+      {anime.trailer?.embed_url && (
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold mb-2">Watch Trailer</h2>
+          <div className="aspect-video">
+            <iframe
+              src={anime.trailer.embed_url}
+              title="Trailer"
+              allowFullScreen
+              className="w-[600px] h-[300px] rounded"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

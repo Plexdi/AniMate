@@ -1,3 +1,4 @@
+'use client'
 type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;

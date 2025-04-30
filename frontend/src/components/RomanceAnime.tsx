@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { fetchRomanceAnime } from '@/utils/fetchRomanceGenre';
+import Link from 'next/link';
 
 export default function RomanceAnimeSection() {
   const [romanceList, setRomanceList] = useState<any[]>([]);
@@ -26,15 +27,16 @@ export default function RomanceAnimeSection() {
 
       <div className="flex gap-4 overflow-x-auto">
         {romanceList.map((anime) => (
-          <div key={anime.mal_id} className="min-w-[160px]">
-            <img
-              src={anime.images.jpg.large_image_url}
-              alt={anime.title}
-              className="rounded w-full"
-            />
-            <p className="text-sm mt-1 text-white font-semibold">{anime.title}</p>
-            <p className="text-xs text-gray-400">Sub | Dub</p>
-          </div>
+          <Link href={`/anime/${anime.mal_id}`} key={anime.mal_id} className="min-w-[160px] block hover:opacity-80 transition-opacity">
+            <div>
+              <img
+                src={anime.images.jpg.large_image_url}
+                alt={anime.title}
+                className="w-full h-[240px] object-cover rounded-md"
+              />
+              <p className="text-sm mt-1 text-white font-semibold">{anime.title}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </section>
